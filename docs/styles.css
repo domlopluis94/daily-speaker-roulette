@@ -1,0 +1,41 @@
+body {
+    background-color: #0f0e17;
+    color: #fffffe;
+}
+
+.layout {
+    width: 100%;
+    display: grid;
+    grid: "header header header" auto "leftSide body rightSide" 1fr "footer footer footer" auto / 240px 1fr 240px;
+    gap: 8px;
+}
+
+.header {
+    grid-area: header;
+    color: #fffffe;
+}
+
+.leftSide {
+    grid-area: leftSide;
+}
+
+.body {
+    grid-area: body;
+}
+
+.rightSide {
+    grid-area: rightSide;
+}
+
+.footer {
+    grid-area: footer;
+}
+
+.spin {
+    background-color: rgb(255, 137, 6);
+    color: rgb(255, 255, 254);
+    opacity: 1;
+    transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg);
+    transform-style: preserve-3d;
+    font-size: 1rem;
+}
