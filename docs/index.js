@@ -498,8 +498,8 @@ stroke-dashoffset: 0;
 let roulette;
 
 let html = `
-<button type="button" onclick="roulette.spin()" class="btn btn-warning" style="color:#fffffe;background-color: #ff8906;">SPIN</button>
-<canvas id="canvas" width="500" height="500"></canvas>
+<div><button type="button" onclick="roulette.spin()" class="btn btn-warning" style="color:#fffffe;background-color: #ff8906;">SPIN</button></div>
+<canvas style="padding-top: 20px;" id="canvas" width="500" height="500"></canvas>
 `;
 
 const params = new Proxy(new URLSearchParams(window.location.search), {
