@@ -123,6 +123,7 @@ class Roulette {
       250 - this.ctx.measureText(text).width / 2,
       250 + 10
     );
+    this.speechName(text);
     this.ctx.restore();
   }
 
@@ -145,7 +146,9 @@ class Roulette {
   }
 
   playSound() {
-    document.getElementById("cabecera").play();
+    let header = document.getElementById("cabecera");
+    header.volume = 0.1;
+    header.play();
   }
 
   stopSound() {
@@ -157,18 +160,22 @@ class Roulette {
     switch (rndInt) {
       case 2:
         let myaudio2 = document.getElementById("aporel");
+        myaudio2.volume = 0.1;
         myaudio2.play();
         break;
       case 3:
         let comodincomodin = document.getElementById("comodincomodin");
+        comodincomodin.volume = 0.1;
         comodincomodin.play();
         break;
       case 4:
         let resuelvoyo = document.getElementById("resuelvoyo");
+        resuelvoyo.volume = 0.1;
         resuelvoyo.play();
         break;
       default:
         let tiradelaruleta = document.getElementById("tiradelaruleta");
+        tiradelaruleta.volume = 0.1;
         tiradelaruleta.play();
         break;
     }
@@ -492,6 +499,40 @@ stroke-dashoffset: 0;
   `;
 
     document.querySelector("html").innerHTML = `${style}${newbody}`;
+    this.speechSynthesis(this.subtitleText);
+  }
+
+  getfirstSentence() {
+    const sentences = [
+      "eee ",
+      "Te toca ",
+      "Es tu momento ",
+      "3,2,1 te toca ",
+      "Eeee que te toca ",
+      "Vamos vamos, dale caña ",
+      "Suerte ",
+    ];
+
+    const rndInt = Math.floor(Math.random() * sentences.length);
+    return sentences[rndInt];
+  }
+
+  speechName(name) {
+    this.speechSynthesis(`${this.getfirstSentence()}${name}`);
+  }
+
+  speechSynthesis(text) {
+    if ("speechSynthesis" in window) {
+      // Speech Synthesis supported 🎉
+      var msg = new SpeechSynthesisUtterance();
+      msg.text = text;
+      msg.rate = 0.8;
+      msg.lang = "es";
+      speechSynthesis.speak(msg);
+    } else {
+      // Speech Synthesis Not Supported 😣
+      console.error("Sorry, your browser doesn't support text to speech!");
+    }
   }
 }
 
