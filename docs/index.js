@@ -502,15 +502,22 @@ stroke-dashoffset: 0;
     this.speechSynthesis(this.subtitleText);
   }
 
-  getfirstSentence() {
+  getfirstSentence(name) {
     const sentences = [
-      "eee ",
-      "Te toca ",
-      "Es tu momento ",
-      "3,2,1 te toca ",
-      "Eeee que te toca ",
-      "Vamos vamos, dale caña ",
-      "Suerte ",
+      `Te toca ${name}`,
+      `Es tu momento ${name}`,
+      `3,2,1 te toca ${name}`,
+      `Eeee ${name} que te toca ${name}`,
+      `${name} Vamos vamos, dale caña ${name}`,
+      `Suerte ${name}`,
+      `3 2 1 Te toca ${name}`,
+      `pum pum pum te toco ${name}`,
+      `eee ${name} despierta ${name}`,
+      `Y el siguente es ${name}`,
+      `Arranca por la derecha el genio del fútbol mundial ${name}`,
+      `Como siempre dice ${name} Si buscas resultados distintos, no hagas siempre lo mismo`,
+      `Como siempre dice ${name} Pienso, luego existo`,
+      `Como siempre dice ${name} Todos somos genios. Pero si juzgas a un pez por su capacidad de trepar árboles, vivirá toda su vida pensando que es un inútil`,
     ];
 
     const rndInt = Math.floor(Math.random() * sentences.length);
@@ -518,15 +525,17 @@ stroke-dashoffset: 0;
   }
 
   speechName(name) {
-    this.speechSynthesis(`${this.getfirstSentence()}${name}`);
+    this.speechSynthesis(`${this.getfirstSentence(name)}`);
   }
 
   speechSynthesis(text) {
     if ("speechSynthesis" in window) {
       // Speech Synthesis supported 🎉
+      let voices = window.speechSynthesis.getVoices();
       var msg = new SpeechSynthesisUtterance();
       msg.text = text;
       msg.rate = 0.8;
+      msg.voice = voices[Math.floor(Math.random() * voices.length)];
       msg.lang = "es";
       speechSynthesis.speak(msg);
     } else {
