@@ -156,7 +156,7 @@ class Roulette {
   }
 
   playSpeed() {
-    const rndInt = Math.floor(Math.random() * 4) + 1;
+    const rndInt = Math.floor(Math.random() * 9) + 1;
     switch (rndInt) {
       case 2:
         let myaudio2 = document.getElementById("aporel");
@@ -172,6 +172,31 @@ class Roulette {
         let resuelvoyo = document.getElementById("resuelvoyo");
         resuelvoyo.volume = 0.1;
         resuelvoyo.play();
+        break;
+      case 5:
+        let fatal = document.getElementById("fatal");
+        fatal.volume = 0.1;
+        fatal.play();
+        break;
+      case 6:
+        let ea = document.getElementById("ea");
+        ea.volume = 0.1;
+        ea.play();
+        break;
+      case 7:
+        let cube = document.getElementById("cube");
+        cube.volume = 0.1;
+        cube.play();
+        break;
+      case 8:
+        let kart = document.getElementById("kart");
+        kart.volume = 0.1;
+        kart.play();
+        break;
+      case 9:
+        let start = document.getElementById("start");
+        start.volume = 0.1;
+        start.play();
         break;
       default:
         let tiradelaruleta = document.getElementById("tiradelaruleta");
@@ -512,11 +537,20 @@ stroke-dashoffset: 0;
       `Suerte ${name}`,
       `3 2 1 Te toca ${name}`,
       `pum pum pum te toco ${name}`,
-      `eee ${name} despierta ${name}`,
+      `eee ${name} te toca ${name}`,
       `Y el siguente es ${name}`,
       `Arranca por la derecha el genio del fútbol mundial ${name}`,
       `Como siempre dice ${name} Si buscas resultados distintos, no hagas siempre lo mismo`,
       `Como siempre dice ${name} Pienso, luego existo`,
+      `Recuerda ${name}. No se trata de si van a derribarte, se trata de si vas a levantarte cuando lo hagan`,
+      `Cuando quieras señor ${name}, estoy lista para rodar`,
+      `Abróchense los cinturones ${name}. Esta va a ser una noche movidita`,
+      `${name} presiento que este es el comienzo de una hermosa amistad`,
+      `Tócala, ${name}, tócala`,
+      `${name} siempre decía: la vida es como una caja de bombones. Nunca sabes lo que te va a tocar`,
+      `Como siempre dice ${name}. Una mañana fresquita, maté a un elefante en pijama. Cómo se metió en el pijama es lo que no sé`,
+      `¡Saludad de mi parte a mi amigo ${name}!`,
+      `Dios mío, ¿Es este el final de ${name}?`,
       `Como siempre dice ${name} Todos somos genios. Pero si juzgas a un pez por su capacidad de trepar árboles, vivirá toda su vida pensando que es un inútil`,
     ];
 
