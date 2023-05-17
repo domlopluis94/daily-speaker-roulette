@@ -529,8 +529,6 @@ stroke-dashoffset: 0;
 
   getfirstSentence(name) {
     const sentences = [
-      `Te toca ${name}`,
-      `Es tu momento ${name}`,
       `3,2,1 te toca ${name}`,
       `Como siempre dice ${name}, Ríe y el mundo reirá contigo, ronca y dormirás solo`,
       `Como siempre dice ${name}, Los matrimonios son como las setas: descubrimos demasiado tarde si son buenas o malas`,
@@ -543,12 +541,6 @@ stroke-dashoffset: 0;
       `La hora de la verdad ha llegado, y la batalla está por comenzar ${name} es el siguiente en hablar, y estamos listos para escuchar su gran poder.`,
       `¡Prepárense para la revelación de un gran secreto!  ${name} está aquí para mostrar su conocimiento completo!`,
       `Eeee ${name} que te toca ${name}`,
-      `${name} Vamos vamos, dale caña ${name}`,
-      `Suerte ${name}`,
-      `3 2 1 Te toca ${name}`,
-      `pum pum pum te toco ${name}`,
-      `eee ${name} te toca ${name}`,
-      `Y el siguente es ${name}`,
       `La presentación no ha terminado, ¡aún hay más emociones!  ${name} está en el escenario, y sus palabras serán como explosiones!`,
       `Arranca por la derecha el genio del fútbol mundial ${name}`,
       `Como siempre dice ${name} Si buscas resultados distintos, no hagas siempre lo mismo`,
@@ -582,6 +574,7 @@ stroke-dashoffset: 0;
   speechSynthesis(text) {
     if ("speechSynthesis" in window) {
       // Speech Synthesis supported 🎉
+      window.speechSynthesis.cancel();
       let voices = window.speechSynthesis.getVoices();
       var msg = new SpeechSynthesisUtterance();
       msg.text = text;
