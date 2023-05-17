@@ -15,6 +15,7 @@ class Roulette {
       subtitle != undefined
         ? subtitle
         : "The daily is over, let's get to work!";
+    this.speakers = [];
   }
 
   getColor(item) {
@@ -568,7 +569,21 @@ stroke-dashoffset: 0;
   }
 
   speechName(name) {
-    this.speechSynthesis(`${this.getfirstSentence(name)}`);
+    if (
+      this.speakers.length > 0 &&
+      this.speakers.find((s) => s.name == name) != undefined
+    ) {
+      try {
+        this.speechSynthesisPersonalice(
+          this.speakers.find((s) => s.name == name)
+        );
+      } catch (error) {
+        console.error(error);
+        this.speechSynthesis(`${this.getfirstSentence(name)}`);
+      }
+    } else {
+      this.speechSynthesis(`${this.getfirstSentence(name)}`);
+    }
   }
 
   speechSynthesis(text) {
@@ -581,6 +596,33 @@ stroke-dashoffset: 0;
       msg.rate = 0.8;
       msg.voice = voices[Math.floor(Math.random() * voices.length)];
       msg.lang = "es";
+      speechSynthesis.speak(msg);
+    } else {
+      // Speech Synthesis Not Supported 😣
+      console.error("Sorry, your browser doesn't support text to speech!");
+    }
+  }
+
+  setProgrammatically(speakers) {
+    this.speakers = speakers;
+  }
+
+  speechSynthesisPersonalice(speaker) {
+    if ("speechSynthesis" in window) {
+      // Speech Synthesis supported 🎉
+      window.speechSynthesis.cancel();
+      let voices = window.speechSynthesis.getVoices();
+      let voicesfiltered = voices.filter((z) => z.lang == speaker.lang);
+      var msg = new SpeechSynthesisUtterance();
+      msg.text = speaker.text;
+      msg.rate = 0.8;
+      if (voicesfiltered.length > 0) {
+        msg.voice = voicesfiltered[Math.floor(Math.random() * voices.length)];
+      } else {
+        msg.voice = voices[Math.floor(Math.random() * voices.length)];
+      }
+
+      msg.lang = speaker.lang;
       speechSynthesis.speak(msg);
     } else {
       // Speech Synthesis Not Supported 😣
@@ -609,5 +651,14 @@ function setroulette() {
   let partipants = document.getElementById("participants").value;
   document.getElementById("main").innerHTML = html;
   roulette = new Roulette(partipants.split(","), params.title, params.subtitle);
+
+  try {
+    if (speakers != undefined) {
+      roulette.setProgrammatically(speakers);
+    }
+  } catch (error) {}
+
   roulette.playSound();
 }
+
+// let speakers = [{name:"luis",text:"Hola mundo",lang:"es-ES"}]
