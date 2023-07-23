@@ -82,6 +82,7 @@ class Roulette {
 
   spin() {
     this.stopSound();
+    document.getElementById("footer").hidden = true;
     if (this.options.length <= 1) {
       this.drawfinal();
     } else {
@@ -125,7 +126,19 @@ class Roulette {
       250 + 10
     );
     this.speechName(text);
+    document.querySelector(
+      "#dicebear"
+    ).src = `https://api.dicebear.com/6.x/pixel-art/svg?seed=${text}`;
+
+    this.reloadImg("https://thispersondoesnotexist.com");
+    document.getElementById("footer").hidden = false;
     this.ctx.restore();
+  }
+
+  async reloadImg(url) {
+    await fetch(url, { cache: "reload", mode: "no-cors" });
+    document.querySelector("#thispersondoesnotexist").src =
+      document.querySelector("#thispersondoesnotexist").src;
   }
 
   reDraw() {
@@ -565,7 +578,16 @@ stroke-dashoffset: 0;
     ];
 
     const rndInt = Math.floor(Math.random() * sentences.length);
-    return sentences[rndInt];
+
+    let sentence = sentences[rndInt];
+
+    try {
+      sentence = `${name}, ${JokesAPI.getRandomFamilyFriendlyText()}`;
+    } catch (error) {
+      console.error(error);
+    }
+
+    return sentence;
   }
 
   speechName(name) {

@@ -17,12 +17,13 @@
         <div class="header text-center">
             <h1>Daily Speaker Roulette</h1>
         </div>
-        <div class="leftSide"></div>
+        <div class="leftSide">
+        </div>
         <div class="body">
 
             <div class="container text-center">
                 <div class="row align-items-end">
-                    <div class="col">
+                    <div class="col-3">
                     </div>
                     <div class="col-6" id="main">
                             <div class="input-group mb-6">
@@ -31,16 +32,13 @@
                             </div>
                             <div>
                                 <p style="padding-top: 30px;">
-                                    Speakers daily roulette V.2.3.0 : More than 160 new voices and new phrases.
-                                    <br>Now you can use the query parameters to save the roulette values:
-                                    <br>speakers=speaker1,speaker2
-                                    <br>title=Daily speaker roulette
-                                    <br>subtitle=The daily roulette is finished, let's get to work!
-                                    <br>You can programmatically say what text you want for each person. just create the variable <b>let speakers = [{name: "Casemiro",text: "Hello world",lang: "es-ES"}]</b> with those who have a custom phrase. You can see the available lang with window.speechSynthesis.getVoices(). 
+                                    Speakers daily roulette V.3.0.0 : More than 4000 and new phrases.
+                                    <br>New integration with the API:  <a href="https://github.com/domlopluis94/GithubPages-Jokes-JsonAPI">GithubPages-Jokes-JsonAPI</a>
+                                    <br>New integration with <a href="https://api.dicebear.com">dicebear</a> and <a href="https://thispersondoesnotexist.com">thispersondoesnotexist</a> 
                                 </p>
                             </div>                            
                     </div>
-                    <div class="col">
+                    <div class="col-3">
                     </div>
                 </div>
             </div>
@@ -57,9 +55,16 @@
             <audio id="kart" src="./content/kart.mp3"></audio>
         </div>
         <div class="rightSide"></div>
-        <div class="footer"></div>
+        <div id="footer" class="footer text-center" hidden>
+                <img style="width: 200px;" id="dicebear" src="https://api.dicebear.com/6.x/pixel-art/svg?seed=Luis Dominguez Lopez" alt="api.dicebear.com of Luis Dominguez Lopez">
+                <img style="width: 200px;" id="thispersondoesnotexist" src="https://thispersondoesnotexist.com" alt="api.dicebear.com of Luis Dominguez Lopez">
+        </div>
     </section>
-
+    <script src="https://cdn.jsdelivr.net/gh/domlopluis94/GithubPages-Jokes-JsonAPI/GithubPages-jokes-jsonapi.min.js"></script>
+    <script>
+        const JokesAPI = new GithubPagesJokesJsonapi();
+        JokesAPI.init();
+    </script>
     <script src="./index.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 
