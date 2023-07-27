@@ -613,6 +613,24 @@ stroke-dashoffset: 0;
       // Speech Synthesis supported 🎉
       window.speechSynthesis.cancel();
       let voices = window.speechSynthesis.getVoices();
+      let voicesfiltered = voices.filter((z) => z.lang == "es-ES");
+      var msg = new SpeechSynthesisUtterance();
+      msg.text = text;
+      msg.rate = 0.8;
+      msg.voice = voicesfiltered[Math.floor(Math.random() * voices.length)];
+      msg.lang = "es";
+      speechSynthesis.speak(msg);
+    } else {
+      // Speech Synthesis Not Supported 😣
+      console.error("Sorry, your browser doesn't support text to speech!");
+    }
+  }
+
+  fullspeechSynthesis(text) {
+    if ("speechSynthesis" in window) {
+      // Speech Synthesis supported 🎉
+      window.speechSynthesis.cancel();
+      let voices = window.speechSynthesis.getVoices();
       var msg = new SpeechSynthesisUtterance();
       msg.text = text;
       msg.rate = 0.8;
